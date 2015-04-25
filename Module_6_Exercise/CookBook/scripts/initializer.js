@@ -1,0 +1,21 @@
+var _this = this;
+var recipeCategories;
+var renderer = null;
+window.onload = function () {
+    var categoriesSelect = document.getElementById('RecipeCategory');
+    categoriesSelect.onchange = function () { return _this.loadRecipes(); };
+    var loader = new RecipeLoader('/JSON/recipeTypes.json');
+    loader.load();
+    renderer = new Renderer();
+};
+function loadRecipes() {
+    var el = document.getElementById('RecipeCategory');
+    try {
+        var category = recipeCategories.items.filter(function (i) { return i.name === el.value; }).reduce(function (i) { return (new RecipeCategory(el.value, i.foodGroups, i.description)); });
+        renderer.renderCategory(category);
+    }
+    catch (ex) {
+        alert(ex.message);
+    }
+}
+//# sourceMappingURL=initializer.js.map
