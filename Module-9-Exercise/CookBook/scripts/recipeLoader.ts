@@ -30,7 +30,7 @@ class RecipeLoader {
 
                 var summary = new RecipeCategorySummary({
                     title: category.title,
-                    text: category.title
+                    text: category.description
                 });
 
                 recipeCategoriesSummary.items.push(summary);

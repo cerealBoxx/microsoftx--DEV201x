@@ -7,7 +7,7 @@ var Renderer = (function () {
         recipeCategoriesSummary.items.forEach(function (category) {
             var opt = document.createElement('option');
             opt.setAttribute('title', category.title);
-            opt.innerHTML = category.text;
+            opt.innerHTML = category.title;
             recipeSelect.appendChild(opt);
         });
     };
