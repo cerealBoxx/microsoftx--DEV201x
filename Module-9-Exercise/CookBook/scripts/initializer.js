@@ -15,7 +15,6 @@ var Cookbook;
         };
         function loadRecipes() {
             var el = document.getElementById('RecipeCategory');
-            console.log("Cykna me");
             try {
                 var category = Common.recipeCategories.items.filter(function (item) { return item.name === el.value; }).reduce(function (item) { return new Cookbook.RecipeData.RecipeCategory({
                     name: el.value,

@@ -16,7 +16,7 @@ module Cookbook.Common {
 
    export function loadRecipes() {
         var el = (<HTMLSelectElement> document.getElementById('RecipeCategory'));
-        console.log("Cykna me");
+
         try {
             var category = recipeCategories.items
             //Find selected item by name
