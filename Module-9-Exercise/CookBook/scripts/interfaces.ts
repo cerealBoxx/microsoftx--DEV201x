@@ -12,7 +12,7 @@
     export interface IExample {
         name: string;
         prepTime: string;
-        ingredients: Ingredient[];
+        ingredients: RecipeData.Ingredient[];
     }
 
 

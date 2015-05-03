@@ -1,7 +1,7 @@
 ﻿/// <reference path="interfaces.ts" />
 
 
-module Cookbook {
+module Cookbook.RecipeData {
     export class BaseRecipeCategory implements Interfaces.IBaseRecipeCategory {
         name: string;
         foodGroups: RecipeData.FoodGroup[] = [];

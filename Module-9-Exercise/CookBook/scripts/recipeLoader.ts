@@ -60,9 +60,9 @@ module Cookbook.Common {
             });
         }
 
-        getIngredients(example): Ingredient[] {
+        getIngredients(example): RecipeData.Ingredient[] {
             return example.ingredients.map((value) => {
-                return new Ingredient(value);
+                return new RecipeData.Ingredient(value);
             });
         }
     } 

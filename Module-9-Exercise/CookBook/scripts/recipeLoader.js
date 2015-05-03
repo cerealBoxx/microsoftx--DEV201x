@@ -60,7 +60,7 @@ var Cookbook;
             };
             RecipeLoader.prototype.getIngredients = function (example) {
                 return example.ingredients.map(function (value) {
-                    return new Ingredient(value);
+                    return new Cookbook.RecipeData.Ingredient(value);
                 });
             };
             return RecipeLoader;
