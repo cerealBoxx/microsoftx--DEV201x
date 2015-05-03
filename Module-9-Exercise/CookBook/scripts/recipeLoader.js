@@ -15,7 +15,6 @@ var RecipeLoader = (function () {
             var categories = data.recipeCategories;
             recipeCategories = new RecipeCategories();
             var recipeCategoriesSummary = new RecipeCategories();
-            console.log(recipeCategoriesSummary);
             categories.forEach(function (category) {
                 var recipeCategory = new RecipeCategory({
                     name: category.title,
@@ -30,7 +29,7 @@ var RecipeLoader = (function () {
                 });
                 recipeCategoriesSummary.items.push(summary);
             });
-            //Render the categories into the select
+            // render the categories into the select
             renderer.renderCategories(recipeCategoriesSummary);
         }
         else {
@@ -38,7 +37,7 @@ var RecipeLoader = (function () {
         }
     };
     RecipeLoader.prototype.getFoodGroups = function (category) {
-        //Map foodgroups data to TS object
+        // map foodgroups data to TS object
         return category.foodGroups.map(function (foodGroup) {
             var group = new FoodGroup(foodGroup.title);
             return group;

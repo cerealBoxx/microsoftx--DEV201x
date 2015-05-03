@@ -5,19 +5,16 @@ class RecipeLoader {
 
     load() {
         $.getJSON(this.url,(data) => {
-            this.mapData(data);        
+            this.mapData(data);
         });
     }
 
     mapData(data) {
         if (data) {
             var categories: any[] = data.recipeCategories;
-           
             recipeCategories = new RecipeCategories<IRecipeCategory>();
 
             var recipeCategoriesSummary = new RecipeCategories<IRecipeCategorySummary>();
-            console.log(recipeCategoriesSummary);
-            
             categories.forEach((category) => {
                 var recipeCategory = new RecipeCategory({
                     name: category.title,
@@ -35,17 +32,15 @@ class RecipeLoader {
 
                 recipeCategoriesSummary.items.push(summary);
             });
-            
-            //Render the categories into the select
+           // render the categories into the select
             renderer.renderCategories(recipeCategoriesSummary);
-        }
-        else {
+        } else {
             renderer.renderError();
         }
     }
 
     getFoodGroups(category) : FoodGroup[] {
-        //Map foodgroups data to TS object
+        // map foodgroups data to TS object
         return category.foodGroups.map((foodGroup) => {
             var group = new FoodGroup(foodGroup.title);
             return group;
@@ -53,7 +48,7 @@ class RecipeLoader {
     }
 
     getExamples(category) : IExample[] {
-        return category.examples.map((example) => { 
+        return category.examples.map((example) => {
             return new Example({
                 name: example.name,
                 ingredients: this.getIngredients(example),
@@ -63,7 +58,7 @@ class RecipeLoader {
     }
 
     getIngredients(example): Ingredient[] {
-        return example.ingredients.map((value) => {
+        return example.ingredients.map((value:string) => {
             return new Ingredient(value);
         });
     }
