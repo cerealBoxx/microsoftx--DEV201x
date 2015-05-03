@@ -1,7 +1,8 @@
-﻿class Renderer {
+﻿module Cookbook.Common {
+    export class Renderer {
 
     //Example how the RecipeCategories<T> generic is used.
-    renderCategories(recipeCategoriesSummary: RecipeCategories<IRecipeCategorySummary>) {
+        renderCategories(recipeCategoriesSummary: RecipeData.RecipeCategories<Interfaces.IRecipeCategorySummary>) {
         var recipeSelect = document.getElementById('RecipeCategory');
         recipeCategoriesSummary.items.forEach((category) => {
             var opt = document.createElement('option');
@@ -11,7 +12,7 @@
         });
     }
 
-    renderCategory(category: IRecipeCategory) {
+    renderCategory(category: Interfaces.IRecipeCategory) {
         //Update foodgroups bullet points
         var foodGroups = (<HTMLSelectElement> document.getElementById('FoodGroups'));
         foodGroups.value = '';
@@ -29,13 +30,13 @@
 
     }
 
-    renderExamples(category: IRecipeCategory) {
+    renderExamples(category: Interfaces.IRecipeCategory) {
         //Update examples
         var examples = (<HTMLSelectElement> document.getElementById('examples'));
         examples.value = '';
 
         var html = '<ol>';
-        for (var i = 0, len = category.examples.length; i < len; i++) { 
+        for (var i = 0, len = category.examples.length; i < len; i++) {
             var example = category.examples[i];
             var ingredients = example.ingredients.map((ingredient) => {
                 return ingredient.name;
@@ -56,3 +57,4 @@
         examples.value = 'Unable to load data!';
     }
 } 
+}

@@ -1,10 +1,12 @@
-﻿class RecipeCategorySummary implements IRecipeCategorySummary {
+﻿module Cookbook.RecipeData {
+    export class RecipeCategorySummary implements Interfaces.IRecipeCategorySummary {
 
-    text: string;
-    title: string;
+        text: string;
+        title: string;
 
-    constructor(summary: IRecipeCategorySummary) {
-        this.text = summary.text;
-        this.title = summary.title;
+        constructor(summary: Interfaces.IRecipeCategorySummary) {
+            this.text = summary.text;
+            this.title = summary.title;
+        }
     }
 }

@@ -1,25 +1,28 @@
-﻿interface IBaseRecipeCategory {
-    name: string;
-    foodGroups: FoodGroup[];
-}
+﻿module Cookbook.Interfaces {
+    export interface IBaseRecipeCategory {
+        name: string;
+        foodGroups: RecipeData.FoodGroup[];
+    }
 
-interface IRecipeCategory extends IBaseRecipeCategory {
-    description: string;
-    examples: IExample[];
-}
+    export interface IRecipeCategory extends IBaseRecipeCategory {
+        description: string;
+        examples: IExample[];
+    }
 
-interface IExample {
-    name: string;
-    prepTime: string;
-    ingredients: Ingredient[];
-}
+    export interface IExample {
+        name: string;
+        prepTime: string;
+        ingredients: Ingredient[];
+    }
 
 
-interface IRecipeCategorySummary {
-    text: string;
-    title: string;
-}
+    export interface IRecipeCategorySummary {
+        text: string;
+        title: string;
+    }
 
-interface IFoodGroup {
-    name: string;
+    export interface IFoodGroup {
+        name: string;
+    }
+   
 }

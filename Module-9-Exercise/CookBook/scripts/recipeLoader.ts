@@ -1,65 +1,69 @@
 ﻿/// <reference path="typings/jquery.d.ts" />
+/// <reference path="initializer.ts" />
 
-class RecipeLoader {
-    constructor(public url: string) {}
+module Cookbook.Common {
+    
+    export class RecipeLoader {
+        constructor(public url: string) { }
 
-    load() {
-        $.getJSON(this.url,(data) => {
-            this.mapData(data);
-        });
-    }
-
-    mapData(data) {
-        if (data) {
-            var categories: any[] = data.recipeCategories;
-            recipeCategories = new RecipeCategories<IRecipeCategory>();
-
-            var recipeCategoriesSummary = new RecipeCategories<IRecipeCategorySummary>();
-            categories.forEach((category) => {
-                var recipeCategory = new RecipeCategory({
-                    name: category.title,
-                    foodGroups: this.getFoodGroups(category),
-                    description: category.details,
-                    examples: this.getExamples(category)
-                });
-
-                recipeCategories.items.push(recipeCategory);
-
-                var summary = new RecipeCategorySummary({
-                    title: category.title,
-                    text: category.description
-                });
-
-                recipeCategoriesSummary.items.push(summary);
+        load() {
+            $.getJSON(this.url,(data) => {
+                this.mapData(data);
             });
-           // render the categories into the select
-            renderer.renderCategories(recipeCategoriesSummary);
-        } else {
-            renderer.renderError();
         }
-    }
 
-    getFoodGroups(category) : FoodGroup[] {
-        // map foodgroups data to TS object
-        return category.foodGroups.map((foodGroup) => {
-            var group = new FoodGroup(foodGroup.title);
-            return group;
-        });
-    }
+        mapData(data) {
+            if (data) {
+                var categories: any[] = data.recipeCategories;
+                recipeCategories = new RecipeData.RecipeCategories<Interfaces.IRecipeCategory>();
 
-    getExamples(category) : IExample[] {
-        return category.examples.map((example) => {
-            return new Example({
-                name: example.name,
-                ingredients: this.getIngredients(example),
-                prepTime: example.prepTime
+                var recipeCategoriesSummary = new RecipeData.RecipeCategories<Interfaces.IRecipeCategorySummary>();
+                categories.forEach((category) => {
+                    var recipeCategory = new RecipeData.RecipeCategory({
+                        name: category.title,
+                        foodGroups: this.getFoodGroups(category),
+                        description: category.details,
+                        examples: this.getExamples(category)
+                    });
+
+                    recipeCategories.items.push(recipeCategory);
+
+                    var summary = new RecipeData.RecipeCategorySummary({
+                        title: category.title,
+                        text: category.description
+                    });
+
+                    recipeCategoriesSummary.items.push(summary);
+                });
+                // render the categories into the select
+                Common.renderer.renderCategories(recipeCategoriesSummary);
+            } else {
+                Common.renderer.renderError();
+            }
+        }
+
+        getFoodGroups(category): RecipeData.FoodGroup[] {
+            // map foodgroups data to TS object
+            return category.foodGroups.map((foodGroup) => {
+                var group = new RecipeData.FoodGroup(foodGroup.title);
+                return group;
             });
-        });
-    }
+        }
 
-    getIngredients(example): Ingredient[] {
-        return example.ingredients.map((value:string) => {
-            return new Ingredient(value);
-        });
-    }
-} 
+        getExamples(category): Interfaces.IExample[] {
+            return category.examples.map((example) => {
+                return new RecipeData.Example({
+                    name: example.name,
+                    ingredients: this.getIngredients(example),
+                    prepTime: example.prepTime
+                });
+            });
+        }
+
+        getIngredients(example): Ingredient[] {
+            return example.ingredients.map((value) => {
+                return new Ingredient(value);
+            });
+        }
+    } 
+}
